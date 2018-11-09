@@ -215,7 +215,7 @@ class PartialData(object):
         t_topil = transforms.Compose([
             transforms.ToPILImage()])
         t_scale = transforms.Compose([
-            transforms.Scale(self.loadSize),
+            transforms.Resize(self.loadSize),
             transforms.ToTensor(),
             transforms.Normalize((0.5, 0.5, 0.5),
                                  (0.5, 0.5, 0.5))])
@@ -257,7 +257,7 @@ class StackDataLoader(BaseDataLoader):
         BaseDataLoader.initialize(self, opt)
         transform = transforms.Compose([
             # TODO: Scale
-            transforms.Scale(opt.loadSize),
+            transforms.Resize(opt.loadSize),
             transforms.ToTensor(),
                                  ])
         dic_phase = {'train':'Train', 'test':'Test'}
@@ -341,7 +341,7 @@ class PartialDataLoader(BaseDataLoader):
         BaseDataLoader.initialize(self, opt)
         transform = transforms.Compose([
             # TODO: Scale
-            transforms.Scale(opt.loadSize),
+            transforms.Resize(opt.loadSize),
             transforms.ToTensor(),
 #             transforms.Normalize((0.5, 0.5, 0.5),
 #                                  (0.5, 0.5, 0.5))
@@ -421,7 +421,7 @@ class DataLoader(BaseDataLoader):
         self.fineSize = opt.fineSize
         transform = transforms.Compose([
             # TODO: Scale
-            transforms.Scale(opt.loadSize),
+            transforms.Resize(opt.loadSize),
             transforms.ToTensor(),
             transforms.Normalize((0.5, 0.5, 0.5),
                                  (0.5, 0.5, 0.5))])
