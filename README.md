@@ -26,6 +26,7 @@ python setup.py install
 pip install visdom
 pip install dominate
 pip install scikit-image
+pip install scikit-video
 ```
 
 - Clone this repo:
