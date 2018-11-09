@@ -429,11 +429,13 @@ class DataLoader(BaseDataLoader):
         dataset = ImageFolder(root=opt.dataroot + '/' + opt.phase,
                               transform=transform, return_paths=True, font_trans=(not opt.flat), rgb=opt.rgb,
                                fineSize=opt.fineSize, loadSize=opt.loadSize) 
+        print ('nthread %s' % self.opt.nThreads)
         data_loader = torch.utils.data.DataLoader(
             dataset,
             batch_size=self.opt.batchSize,
             shuffle=not self.opt.serial_batches,
-            num_workers=int(self.opt.nThreads))
+            # num_workers=int(self.opt.nThreads))
+            num_workers=0)
             
        
         self.dataset = dataset
