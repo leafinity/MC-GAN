@@ -56,7 +56,7 @@ def save_image(image_numpy, image_path,rgb):
         else:
             
             image_numpy_ = np.zeros((image_numpy.shape[0],image_numpy.shape[1]*n_ch/3,3))
-            for i in range(n_ch/3):
+            for i in range(n_ch//3):
                 image_numpy_[:,i*image_numpy.shape[1]:(i+1)*image_numpy.shape[1],:]= image_numpy[:,:,i*3:(i+1)*3]
             image_numpy = image_numpy_.astype('uint8')
                  

@@ -402,7 +402,7 @@ class ResnetGenerator(nn.Module):
         for i in range(n_downsampling):
             mult = factor_ch**(n_downsampling - i)
 
-            model += convTranspose_norm_relu_module(norm_type,norm_layer, ngf * mult, int(ngf * mult / factor_ch), 3, 1,
+            model += convTranspose_norm_relu_module(norm_type,norm_layer, ngf * mult, ngf * mult // factor_ch, 3, 1,
                                         stride=2, output_padding=1)
 
         if norm_type=='batch' or norm_type=='instance':

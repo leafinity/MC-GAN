@@ -301,7 +301,7 @@ class StackGANModel(BaseModel):
         
         #for test time: we need to generate output for all of the glyphs in each input image
         if self.opt.rgb_in:
-            self.batch_ = c/self.opt.input_nc_1
+            self.batch_ = c // self.opt.input_nc_1
         else:
             self.batch_ = c
         self.out_id = range(self.batch_)

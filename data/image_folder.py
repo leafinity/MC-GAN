@@ -44,7 +44,7 @@ def default_loader(path):
 def font_transform(img,path, rgb_in):
     n_rgb = img.size()[0]
     target_size = img.size()[1]
-    D_ = img.size()[2]/target_size
+    D_ = img.size()[2] // target_size
     # warnings.warn("size, %s %s"%(img.size(),D_))
     if not rgb_in:
         img = torch.mean(img,dim=0) #only one of the RGB channels    
