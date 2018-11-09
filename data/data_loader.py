@@ -79,7 +79,7 @@ class FlatData(object):
             raise StopIteration
         AB, AB_paths = next(self.data_loader_iter)
         w_total = AB.size(3)
-        w = int(w_total/2)
+        w = w_total// 2
         h = AB.size(2)
         w_offset = random.randint(0, max(0, w - self.fineSize - 1))
         h_offset = random.randint(0, max(0, h - self.fineSize - 1))
@@ -94,10 +94,10 @@ class FlatData(object):
             #randomly remove some of the glyphs
 
             if not self.dict:
-                blank_ind = np.random.permutation(A.size(3)/target_size)[0:int(self.blanks*A.size(3)/target_size)]
+                blank_ind = np.random.permutation(A.size(3)//target_size)[0:int(self.blanks*A.size(3)//target_size)]
             else:
                 file_name = map(lambda x:x.split("/")[-1],AB_paths)
-                blank_ind = self.random_dict[file_name][0:int(self.blanks*A.size(3)/target_size)]
+                blank_ind = self.random_dict[file_name][0:int(self.blanks*A.size(3)//target_size)]
 
             blank_ind = np.tile(range(target_size), len(blank_ind)) + np.repeat(blank_ind*target_size,target_size)
             AA.index_fill_(3,LongTensor(list(blank_ind)),1)
@@ -136,7 +136,7 @@ class Data(object):
             raise StopIteration
         AB, AB_paths = next(self.data_loader_iter)
         w_total = AB.size(3)
-        w = int(w_total / 2)
+        w = w_total // 2
         h = AB.size(2)
         w_offset = random.randint(0, max(0, w - self.fineSize - 1))
         h_offset = random.randint(0, max(0, h - self.fineSize - 1))
@@ -152,15 +152,15 @@ class Data(object):
         else: 
             #randomly remove some of the glyphs in input
             if not self.dict:
-                blank_ind = np.repeat(np.random.permutation(A.size(1)/n_rgb)[0:int(self.blanks*A.size(1)/n_rgb)],n_rgb)
+                blank_ind = np.repeat(np.random.permutation(A.size(1)//n_rgb)[0:int(self.blanks*A.size(1)//n_rgb)],n_rgb)
             else:
                 file_name = map(lambda x:x.split("/")[-1],AB_paths)
                 if len(file_name)>1:
                     raise Exception('batch size should be 1')
                 file_name=file_name[0]
-                blank_ind = self.random_dict[file_name][0:int(self.blanks*A.size(1)/n_rgb)]
+                blank_ind = self.random_dict[file_name][0:int(self.blanks*A.size(1)//n_rgb)]
 
-            rgb_inds = np.tile(range(n_rgb),int(self.blanks*A.size(1)/n_rgb))
+            rgb_inds = np.tile(range(n_rgb),int(self.blanks*A.size(1)//n_rgb))
             blank_ind = blank_ind*n_rgb + rgb_inds
             AA = A.clone()
             AA.index_fill_(1,LongTensor(list(blank_ind)),1)
