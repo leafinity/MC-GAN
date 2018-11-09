@@ -32,6 +32,7 @@ opt.lr = opt.lr
 opt.continue_train = False
 opt.use_dropout = True
 opt.use_dropout1 = True
+opt.nThreads = 1 # memory is too small for 2 thread
 model = create_model(opt)
 visualizer = Visualizer(opt) 
 print('saving the model at the end of epoch %d, iters %d' %

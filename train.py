@@ -17,6 +17,8 @@ dataset = data_loader.load_data()
 dataset_size = len(data_loader)
 print('#training images = %d' % dataset_size)
 
+opt.nThreads = 1 # memory is too small for 2 thread
+
 model = create_model(opt)
 visualizer = Visualizer(opt)
 
