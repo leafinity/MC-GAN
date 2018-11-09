@@ -80,9 +80,9 @@ class StackGANModel(BaseModel):
 
             if self.opt.print_weights:
                 for key in self.netE1.state_dict().keys():
-                    print key, 'random_init, mean,std:', torch.mean(self.netE1.state_dict()[key]),torch.std(self.netE1.state_dict()[key])
+                    print(key, 'random_init, mean,std:', torch.mean(self.netE1.state_dict()[key]),torch.std(self.netE1.state_dict()[key]))
                 for key in self.netDE1.state_dict().keys():
-                    print key, 'random_init, mean,std:', torch.mean(self.netDE1.state_dict()[key]),torch.std(self.netDE1.state_dict()[key])
+                    print(key, 'random_init, mean,std:', torch.mean(self.netDE1.state_dict()[key]),torch.std(self.netDE1.state_dict()[key]))
 
 
         if not self.isTrain:
