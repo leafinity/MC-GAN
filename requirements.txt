@@ -1,0 +1,4 @@
+visdom
+dominate
+scikit-image
+scikit-video
