@@ -96,7 +96,7 @@ class FlatData(object):
             if not self.dict:
                 blank_ind = np.random.permutation(A.size(3)//target_size)[0:int(self.blanks*A.size(3)//target_size)]
             else:
-                file_name = map(lambda x:x.split("/")[-1],AB_paths)
+                file_name = list(map(lambda x:x.split("/")[-1],AB_paths))
                 blank_ind = self.random_dict[file_name][0:int(self.blanks*A.size(3)//target_size)]
 
             blank_ind = np.tile(range(target_size), len(blank_ind)) + np.repeat(blank_ind*target_size,target_size)
@@ -154,7 +154,7 @@ class Data(object):
             if not self.dict:
                 blank_ind = np.repeat(np.random.permutation(A.size(1)//n_rgb)[0:int(self.blanks*A.size(1)//n_rgb)],n_rgb)
             else:
-                file_name = map(lambda x:x.split("/")[-1],AB_paths)
+                file_name = list(map(lambda x:x.split("/")[-1],AB_paths))
                 if len(file_name)>1:
                     raise Exception('batch size should be 1')
                 file_name=file_name[0]
@@ -443,7 +443,7 @@ class DataLoader(BaseDataLoader):
         test_dict = opt.dataroot+'/test_dict/dict.pkl'
         if opt.phase=='test':
             if os.path.isfile(test_dict):
-                dict_inds = pickle.load(open(test_dict))
+                dict_inds = pickle.load(open(test_dict, 'rb'), 'latin1')
             else:
                 warnings.warn('Blanks in test data are random. create a pkl file in ~/data_path/test_dict/dict.pkl including predifined random indices')
 

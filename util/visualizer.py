@@ -39,8 +39,8 @@ class Visualizer():
 
 
     def eval_current_result(self,visuals):
-        fake_B = visuals['fake_B'].copy()
-        real_B = visuals['real_B'].copy()
+        fake_B = visuals['fake_B'].copy().astype(np.float64)
+        real_B = visuals['real_B'].copy().astype(np.float64)
         ssim_score = ssim(fake_B, real_B, data_range=real_B.max() - real_B.min())
         fake_B /= real_B.max()
         real_B /= real_B.max()
