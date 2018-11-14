@@ -33,6 +33,7 @@ opt.continue_train = False
 opt.use_dropout = True
 opt.use_dropout1 = True
 opt.nThreads = 1 # memory is too small for 2 thread
+opt.save_epoch_freq=5 # for make vedio
 model = create_model(opt)
 visualizer = Visualizer(opt) 
 print('saving the model at the end of epoch %d, iters %d' %
